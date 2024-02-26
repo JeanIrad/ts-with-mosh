@@ -10,7 +10,7 @@ function render(document: any) {
 // render("this is my document to render");
 // tuples are arrays with fixed length values, better restrict it to two values
 
-const user: [number, string, Date] = [21, "jean", new Date("02-21-2012")];
+const person: [number, string, Date] = [21, "jean", new Date("02-21-2012")];
 // console.log(user[1].includes("ean"));
 // console.log(user[2].toLocaleDateString());
 // enums
@@ -31,4 +31,52 @@ function calculateTax(income: number): number {
 function greet(name = "Jean", lastName?: string): string {
   return `hello dear ${name} ${lastName || ""}`;
 }
-console.log(greet("Paul"));
+// console.log(greet("Paul"));
+// objects
+
+const users: {}[] = [];
+const user: {
+  name: string;
+  readonly email: string;
+  password: string;
+} = { name: "", email: "", password: "" };
+// (user.name = "Jean"), (user.email = "jado@gmail.com"), (user.password = "Pass");
+users.push(user);
+// console.log(users);
+
+// type alias
+
+type Employee = {
+  readonly id: number;
+  name: string;
+  retire: (date: Date) => void;
+};
+
+let employee: Employee = {
+  id: 1,
+  name: "Mosh",
+  retire: (date: Date) => {
+    console.log(date);
+  },
+};
+// union types operator
+
+function kgToLbs(weight: number | string): number {
+  if (typeof weight === "number") return weight * 2.2;
+  else return parseInt(weight) * 2.2;
+}
+// kgToLbs(20);
+// console.log(kgToLbs("32kg"));
+// intersection operator
+
+type Draggable = {
+  drag: () => void;
+};
+type Resizable = {
+  resize: () => void;
+};
+type UIWidget = Draggable & Resizable;
+let textBox: UIWidget = {
+  drag: () => console.log("dragging"),
+  resize: () => console.log("resizing"),
+};
