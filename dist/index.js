@@ -30,4 +30,40 @@ let textBox = {
     drag: () => console.log("dragging"),
     resize: () => console.log("resizing"),
 };
+const quantity = 100;
+function sayHi(name) {
+    if (name)
+        console.log(name.toUpperCase());
+    else
+        console.log("Hola");
+}
+function getCustomer(id) {
+    return id === 0 ? null : { birthday: new Date("2003") };
+}
+let customer = getCustomer(1);
+console.log(customer === null || customer === void 0 ? void 0 : customer.birthday);
+let log = null;
+log === null || log === void 0 ? void 0 : log("some value");
+let speed = null;
+let ride = {
+    speed: speed !== null && speed !== void 0 ? speed : 30,
+};
+const phone = document.getElementById("phone");
+const body = document.querySelector("body");
+const div = document.querySelector("div");
+body.style.background = "#e4a27a";
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+    const h2 = document.createElement("h2");
+    e.preventDefault();
+    h2.textContent = phone.value;
+    phone.value = "";
+    div.appendChild(h2);
+});
+console.log(new Date().toLocaleDateString());
+const span = document.createElement("span");
+phone.addEventListener("input", function () {
+    span.textContent = this.value;
+    this.insertAdjacentElement("beforebegin", span);
+});
 //# sourceMappingURL=index.js.map

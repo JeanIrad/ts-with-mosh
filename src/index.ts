@@ -80,3 +80,58 @@ let textBox: UIWidget = {
   drag: () => console.log("dragging"),
   resize: () => console.log("resizing"),
 };
+// literal types
+type Quantity = 50 | 100;
+
+const quantity: Quantity = 100;
+// nullable values
+function sayHi(name: string | null | undefined) {
+  if (name) console.log(name.toUpperCase());
+  else console.log("Hola");
+}
+// optional Chaining
+
+type Customer = {
+  birthday: Date;
+};
+function getCustomer(id: number): Customer | null {
+  return id === 0 ? null : { birthday: new Date("2003") };
+}
+let customer = getCustomer(1);
+// optional property access operator
+console.log(customer?.birthday);
+// optional element access operator
+// customers?.[0]
+// optional call
+let log: any = null;
+log?.("some value");
+
+// nullish coaelescing
+
+let speed: number | null = null;
+let ride = {
+  // Nullish coaelescing operator
+  speed: speed ?? 30,
+};
+// type assertions
+
+const phone = document.getElementById("phone") as HTMLInputElement;
+const body = document.querySelector("body") as HTMLElement;
+const div = document.querySelector("div") as HTMLDivElement;
+body.style.background = "#e4a27a";
+const form = document.querySelector("form") as HTMLFormElement;
+form.addEventListener("submit", (e: SubmitEvent) => {
+  const h2 = document.createElement("h2");
+  e.preventDefault();
+  h2.textContent = phone.value;
+  phone.value = "";
+  div.appendChild(h2);
+});
+console.log(new Date().toLocaleDateString());
+// let users: {}[] = JSON.parse(localStorage.getItem('users')) || []
+const span = document.createElement("span");
+phone.addEventListener("input", function () {
+  // console.log(this);
+  span.textContent = this.value;
+  this.insertAdjacentElement("beforebegin", span);
+});
