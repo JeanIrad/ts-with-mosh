@@ -255,19 +255,26 @@ let teacher = new Teacher("Jean", "Iradukunda");
 //   abstract addEvent(): void
 //   abstract removeEvent(): void
 // }
-interface Calendar{
-  name: string
-  addEvent(): void
-  removeEvent(): void
+interface Calendar {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
 }
 interface CloudCalendar extends Calendar {
-  sync(): void
+  sync(): void;
 }
 
-{
-  throw new Error('Method not implemented')
-};
-removeEvent(): void {
-  throw new Error('Method Not implemented')
+class GoogleCalendar implements Calendar {
+  constructor(public name: string) {}
+  addEvent(): void {
+    throw new Error("Method not implemented.");
+  }
+  removeEvent(): void {
+    throw new Error("Method not implemented.");
+  }
 }
-}
+// modules
+import { Circle, Square } from "./shapes";
+import Store from "./storage";
+let circle = new Circle(4);
+// console.log(circle.radius)
