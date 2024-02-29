@@ -48,22 +48,75 @@ let speed = null;
 let ride = {
     speed: speed !== null && speed !== void 0 ? speed : 30,
 };
-const phone = document.getElementById("phone");
-const body = document.querySelector("body");
-const div = document.querySelector("div");
-body.style.background = "#e4a27a";
-const form = document.querySelector("form");
-form.addEventListener("submit", (e) => {
-    const h2 = document.createElement("h2");
-    e.preventDefault();
-    h2.textContent = phone.value;
-    phone.value = "";
-    div.appendChild(h2);
-});
-console.log(new Date().toLocaleDateString());
-const span = document.createElement("span");
-phone.addEventListener("input", function () {
-    span.textContent = this.value;
-    this.insertAdjacentElement("beforebegin", span);
-});
+function NeverType() {
+    while (true) { }
+}
+class Account {
+    constructor(id, owner, _balance) {
+        this.id = id;
+        this.owner = owner;
+        this._balance = _balance;
+    }
+    deposit(amount) {
+        if (amount <= 0)
+            throw new Error("Invalid amount");
+        this._balance += amount;
+    }
+    get balance() {
+        return this._balance;
+    }
+}
+let account = new Account(1, "Jean", 0);
+account.deposit(100);
+class SeatAssignment {
+}
+let seats = new SeatAssignment();
+seats.A1 = "John";
+seats.A2 = "Peter";
+seats.A3 = "Mosh";
+seats["A4"] = "Jean";
+class Ride {
+    start() {
+        Ride._activeRides++;
+    }
+    stop() {
+        Ride._activeRides--;
+    }
+    static get activeRides() {
+        return Ride._activeRides;
+    }
+}
+Ride._activeRides = 0;
+let ride1 = new Ride();
+ride1.start();
+let ride2 = new Ride();
+ride2.start();
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+    walk() {
+        console.log("Walking...");
+    }
+}
+class Student extends Person {
+    constructor(studentId, firstName, lastName) {
+        super(firstName, lastName);
+        this.studentId = studentId;
+    }
+    takeTest() {
+        console.log("Taking a test...");
+    }
+}
+class Teacher extends Person {
+    get fullName() {
+        return "Professor " + super.fullName;
+    }
+}
+let teacher = new Teacher("Jean", "Iradukunda");
+console.log(teacher.fullName);
 //# sourceMappingURL=index.js.map
